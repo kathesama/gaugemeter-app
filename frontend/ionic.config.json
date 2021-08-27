@@ -1,7 +1,5 @@
 {
-  "name": "blank",
-  "integrations": {
-    "capacitor": {}
-  },
+  "name": "resueltoIonic",
+  "integrations": {},
   "type": "angular"
 }
