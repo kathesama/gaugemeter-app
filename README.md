@@ -57,7 +57,7 @@ seco y debe regarse de inmediato.
 ```
 - MONGO_URL=mongodb://root:pass12345@127.0.0.1:27017/?authSource=admin
 - IS_TLS_MONGO=false
-- DB_NAME=gaugemeterTp
+- DB_NAME=gaugemetertp
 - SERVER_FINGERKEY=987asy87tdsyakjhsbdahsd´90as8d0a98sda12453454fbfgb
 - SENDGRID_API_KEY=SG.dH3vMyasdasdbbV2qg.MDatasdasdasd5ye-ryaIbj6faKasdasdasdto6Eg
 - JWT_SECRET=0p9o1u23oeiu23rhj3bjknOIUY(/&%R&/4765ytagiwkjnkasdj)
@@ -69,6 +69,14 @@ seco y debe regarse de inmediato.
 ```
 3. Ejecutar:
 > docker-compose -f .\docker-compose.yml up
+
+Nota: puede pasar que no se conecte a la base de datos y genere este error:
+
+```
+node-backend      | error: connection <monitor> to localhost:27017 closed
+```
+
+EN ese caso detenga Docker-compose: **ctrl + c** y ejecute nuevamente el comando.
 
 * Para ver todos detalles del backend ir a **[Readme de gaugemeter-app](https://github.com/kathesama/gaugemeter_tp_bck/blob/main/README.md)**
 
