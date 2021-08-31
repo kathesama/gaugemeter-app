@@ -5,11 +5,12 @@
 
 [<img src="https://img.shields.io/badge/Linkedin-kathesama-blue?style=for-the-badge&logo=linkedin">](https://www.linkedin.com/in/kathesama)
 <br>
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg?style=for-the-badge)
+<br>
+![Ionic](https://img.shields.io/badge/Ionic-4b94fa?style=for-the-badge&logo=ionic&logoColor=white)
 ![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-blue?style=for-the-badge&logo=docker&logoColor=white)
-![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
-![VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg?style=for-the-badge)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 <br>
 [![GitHub issues](https://img.shields.io/github/issues/kathesama/gaugemeter-app?style=plastic)](https://github.com/kathesama/gaugemeter-app/issues)
 [![GitHub forks](https://img.shields.io/github/forks/kathesama/gaugemeter-app?style=plastic)](https://github.com/kathesama/gaugemeter-app/network)
