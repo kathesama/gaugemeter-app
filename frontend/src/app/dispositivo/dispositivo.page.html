@@ -1,18 +1,126 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-button routerLink="/">
-                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-        <ion-title>Dispositivo -</ion-title>
-    </ion-toolbar>
-</ion-header>
+<div>
+    <ion-header>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-button routerLink="/">
+                    <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+            <ion-title>Dispositivo -</ion-title>
+        </ion-toolbar>
+    </ion-header>
 
-<ion-content>
-    <div>Acá deberia traer mas información del dispositivo y su medida del sensor</div>
+    <!-- <ion-spinner *ngIf="showSpinner" icon="lines" class="spinner"></ion-spinner> -->
+
     <div>
-        {{dispositivo.ubicacion}}
-    </div>
+        <ion-content [fullscreen]="true">
+            <ion-grid>
+                <ion-row class="ion-align-items-center">
+                    <ion-col size="12" class="ion-text-center">
+                        <div id="highcharts" style="width:100%; height:300px;"></div>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="ion-align-items-center">
+                    <ion-col size="12" class="ion-text-center">
+                        <ion-button (click)="this.toggleValvula()" *ngIf="this.estaAbierto == 1" expand="block" color="danger">
+                            CERRAR ELECTROVALVULA</ion-button>
+                        <ion-button (click)="this.toggleValvula()" *ngIf="this.estaAbierto != 1" expand="block" color="primary">
+                            ABRIR ELECTROVALVULA</ion-button>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="ion-align-items-center">
+                    <ion-col size="12" class="ion-text-center">
+                        <ion-button (click)="this.toggleMediciones()" *ngIf="this.mostrarMediciones == true" expand="block" color="danger">OCULTAR MEDICIONES</ion-button>
+                        <ion-button (click)="this.toggleMediciones()" *ngIf="this.mostrarMediciones != true" expand="block" color="primary">VER TODAS LAS MEDICIONES</ion-button>
+                    </ion-col>
+                </ion-row>
+                <section *ngIf="this.mostrarMediciones == true">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col size="5" style="border-top: 1px solid grey; border-left: 1px solid grey; border-bottom: 1px solid grey; padding-top: 1em; padding-bottom: 1em; background-color: lightgrey;">
+                                <b>ID</b>
+                            </ion-col>
+                            <ion-col size="5" style="border-top: 1px solid grey; border-bottom: 1px solid grey; padding-top: 1em; padding-bottom: 1em; background-color: lightgrey;">
+                                <b>Registro</b>
+                            </ion-col>
+                            <ion-col size="2" style="border-top: 1px solid grey; border-right: 1px solid grey; border-bottom: 1px solid grey; padding-top: 1em; padding-bottom: 1em; background-color: lightgrey;">
+                                <b>Medición</b>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row appBackgroundColor *ngFor="let medicion of this.mediciones">
+                            <ion-col size="5" style="border-left: 1px solid grey; border-bottom: 1px solid grey; padding-top: 1em; padding-bottom: 1em;">
+                                {{medicion.uuid}}
+                            </ion-col>
+                            <ion-col size="5" style="border-bottom: 1px solid grey; padding-top: 1em; padding-bottom: 1em;">
+                                {{medicion.fecha | date:'dd/MM/yyyy HH:mm:ss':'z'}}
+                            </ion-col>
+                            <ion-col size="2" style="border-right: 1px solid grey; border-bottom: 1px solid grey; padding-top: 1em; padding-bottom: 1em;">
+                                {{medicion.valor | unidad}}
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </section>
+                <!-- <ion-row class="ion-align-items-center" *ngIf="this.mostrarMediciones == true">
+                    <ion-col size="12" class="ion-text-center">
+                        <h2>Mediciones:</h2>
+                        <ion-list>
+                            <ion-item *ngFor="let med of this.mediciones">
+                                <ion-label>
+                                    <h3>medicionId:{{med.medicionId}} Valor: {{med.valor}} fecha: {{med.fecha}} dispositivoId:{{med.dispositivoId}}</h3>
+                                </ion-label>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                </ion-row> -->
+                <ion-row class="ion-align-items-center">
+                    <ion-col size="12" class="ion-text-center">
+                        <ion-button (click)="this.toggleLogs()" *ngIf="this.mostrarLogs == true" expand="block" color="danger">
+                            CERRAR RIEGOS</ion-button>
+                        <ion-button (click)="this.toggleLogs()" *ngIf="this.mostrarLogs != true" expand="block" color="primary">
+                            VER LOG RIEGOS</ion-button>
 
-</ion-content>
+                    </ion-col>
+                </ion-row>
+                <section *ngIf="this.mostrarLogs == true">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col size="5" style="border-top: 1px solid grey; border-left: 1px solid grey; border-bottom: 1px solid grey; padding-top: 1em; padding-bottom: 1em; background-color: lightgrey;">
+                                <b>ID</b>
+                            </ion-col>
+                            <ion-col size="5" style="border-top: 1px solid grey; border-bottom: 1px solid grey; padding-top: 1em; padding-bottom: 1em; background-color: lightgrey;">
+                                <b>Fecha y hora</b>
+                            </ion-col>
+                            <ion-col size="2" style="border-top: 1px solid grey; border-right: 1px solid grey; border-bottom: 1px solid grey; padding-top: 1em; padding-bottom: 1em; background-color: lightgrey;">
+                                <b>Estado</b>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row appBackgroundColor *ngFor="let log of this.logs.logRiegos">
+                            <ion-col size="5" style="border-left: 1px solid grey; border-bottom: 1px solid grey; padding-top: 1em; padding-bottom: 1em;">
+                                {{log.uuid}}
+                            </ion-col>
+                            <ion-col size="5" style="border-bottom: 1px solid grey; padding-top: 1em; padding-bottom: 1em;">
+                                {{log.fecha | date:'dd/MM/yyyy HH:mm:ss':'z'}}
+                            </ion-col>
+                            <ion-col size="2" style="border-right: 1px solid grey; border-bottom: 1px solid grey; padding-top: 1em; padding-bottom: 1em;">
+                                {{log.apertura | actuador}}
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </section>
+                <!-- <ion-row class="ion-align-items-center" *ngIf="this.mostrarLogs == true">
+                    <ion-col size="12" class="ion-text-center">
+                        <h2>Logs:</h2>
+
+                        <ion-list>
+                            <ion-item *ngFor="let log of this.logs">
+                                <ion-label>
+                                    <h3>LogId:{{log.logRiegoId}} Apertura: {{log.apertura}} fecha: {{log.fecha}} electrovalvula:{{log.electrovalvulaId}}</h3>
+                                </ion-label>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                </ion-row> -->
+            </ion-grid>
+        </ion-content>
+    </div>
+</div>

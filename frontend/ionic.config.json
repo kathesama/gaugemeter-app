@@ -1,5 +1,9 @@
 {
-  "name": "resueltoIonic",
-  "integrations": {},
-  "type": "angular"
+    "name": "resueltoIonic",
+    "integrations": {},
+    "type": "angular",
+    "proxies": [{
+        "path": "/api/v1/*",
+        "proxyUrl": "http://localhost:8100/"
+    }]
 }
