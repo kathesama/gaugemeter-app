@@ -57,7 +57,7 @@ seco y debe regarse de inmediato.
 3. Ejecutar:
 > docker-compose -f .\docker-compose.yml up
 
-* Para ver todos detalles del backend ir a **[Readme de gaugemeter-app](https://github.com/kathesama/gaugemeter-app/blob/main/README.md)**
+* Para ver todos detalles del backend ir a **[Readme de gaugemeter-app](https://github.com/kathesama/gaugemeter_tp_bck/blob/main/README.md)**
 
 * Para administrar la base de datos mongo se recomienda usar *MongoDB Compass*, instalar: https://www.mongodb.com/try/download/compass
 
