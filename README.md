@@ -49,23 +49,11 @@ suelo está saturado; de 10 a 30 Cb, el suelo está en CC; y, de 30 a 60 Cb, el 
 seco y debe regarse de inmediato.
 
 ## Ejecución de la aplicación
-1. Clonar este repo:
-> git clone https://github.com/kathesama/gaugemeter-app.git
+1. Clonar este repo de la siguiente manera (para que se pueda bajar también el submodulo backend):
+> git clone --recurse-submodules https://github.com/kathesama/gaugemeter-app.git
 
 2. **Ejecutar primero el backend**, para ello ir a la carpeta *./gaugemeter-app* y modificar el archivo **docker-compose.yml**, ajuste los parametros de enviroment para la imagen de docker.
-
-3. Ejecutar:
-> docker-compose -f .\docker-compose.yml up
-
-* Para ver todos detalles del backend ir a **[Readme de gaugemeter-app](https://github.com/kathesama/gaugemeter_tp_bck/blob/main/README.md)**
-
-* Para administrar la base de datos mongo se recomienda usar *MongoDB Compass*, instalar: https://www.mongodb.com/try/download/compass
-
-Una vez haya instalado MongoDB Compass, se debe abrir la consola de MongoDB Compass y configurar los parametros de conexión a la base de datos:<br>
-* **Usuario**: root
-* **Password**: pass12345
-
-Ejemplo de parametros para el backend:<br>
+* Ejemplo de parametros para el backend:<br>
 ```
 - MONGO_URL=mongodb://root:pass12345@127.0.0.1:27017/?authSource=admin
 - IS_TLS_MONGO=false
@@ -79,6 +67,18 @@ Ejemplo de parametros para el backend:<br>
 - MAIL_FROM=comemail@domain.com
 - isHTTPS=false
 ```
+3. Ejecutar:
+> docker-compose -f .\docker-compose.yml up
+
+* Para ver todos detalles del backend ir a **[Readme de gaugemeter-app](https://github.com/kathesama/gaugemeter_tp_bck/blob/main/README.md)**
+
+* Para administrar la base de datos mongo se recomienda usar *MongoDB Compass*, instalar: https://www.mongodb.com/try/download/compass
+
+Una vez haya instalado MongoDB Compass, se debe abrir la consola de MongoDB Compass y configurar los parametros de conexión a la base de datos:<br>
+* **Usuario**: root
+* **Password**: pass12345
+
+
 
 4. Ir a la carpeta *./frontend* y ejecutar:<br>
 > npm install
