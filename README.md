@@ -83,7 +83,7 @@ Sino logra arrancar el proyecto con el comando entonces pruebe el sieguente apro
 Ejecute:
 > docker-compose -f .\docker-compose.mongo-dev.yml up
 
-Una vez haya terminado de cargar, ejecute el siguiente comando en otro terminal:
+Una vez haya terminado de cargar, ejecute el siguiente comando en otro terminal (**recuerde actualizar los valores de los environments antes de ejecutar el archivo**):
 > docker-compose -f .\docker-compose.gaugemeter_bck.yml up
 
 Debería mostrar el siguiente status al estar cargado:
