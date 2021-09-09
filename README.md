@@ -54,9 +54,9 @@ seco y debe regarse de inmediato.
 > git clone --recurse-submodules https://github.com/kathesama/gaugemeter-app.git
 
 2. **Ejecutar primero el backend**, para ello ir a la carpeta *./gaugemeter-app* y modificar el archivo **docker-compose.yml**, ajuste los parametros de enviroment para la imagen de docker.
-* Ejemplo de parametros para el backend:<br>
+* Ejemplo de parametros para el backend, recuerde reemplazar <YOUR IP ADDRESS HERE> por su dirección IP:<br>
 ```
-- MONGO_URL=mongodb://root:pass12345@127.0.0.1:27017/?authSource=admin
+- MONGO_URL=mongodb://root:pass12345@<YOUR IP ADDRESS HERE>:27017/?authSource=admin
 - IS_TLS_MONGO=false
 - DB_NAME=gaugemetertp
 - SERVER_FINGERKEY=987asy87tdsyakjhsbdahsd´90as8d0a98sda12453454fbfgb
@@ -77,22 +77,33 @@ Nota: puede pasar que no se conecte a la base de datos y genere este error:
 node-backend      | error: connection <monitor> to localhost:27017 closed
 ```
 
-EN ese caso detenga Docker-compose: **ctrl + c** y ejecute nuevamente el comando.
+En ese caso detenga Docker-compose: **ctrl + c** y ejecute nuevamente el comando.
 
-* Para ver todos detalles del backend ir a **[Readme de gaugemeter-app](https://github.com/kathesama/gaugemeter_tp_bck/blob/main/README.md)**
+Sino logra arrancar el proyecto con el comando entonces pruebe el sieguente aproach,
+Ejecute:
+> docker-compose -f .\docker-compose.mongo-dev.yml up
+
+Una vez haya terminado de cargar, ejecute el siguiente comando en otro terminal:
+> docker-compose -f .\docker-compose.gaugemeter_bck.yml up
+
+Debería mostrar el siguiente status al estar cargado:
+```
+node-backend      | info: Server up at port: 8051
+node-backend      | info: Conectado a DB en el puerto: 27017 -> online
+```
+
+* Para ver todos detalles del backend ir a **[Readme de gaugemeter_tp_bck](https://github.com/kathesama/gaugemeter_tp_bck/blob/main/README.md)**
 
 * Para administrar la base de datos mongo se recomienda usar *MongoDB Compass*, instalar: https://www.mongodb.com/try/download/compass
 
-Una vez haya instalado MongoDB Compass, se debe abrir la consola de MongoDB Compass y configurar los parametros de conexión a la base de datos:<br>
+Una vez haya instalado MongoDB Compass, se debe abrir la consola de MongoDB Compass y configurar los parámetros de conexión a la base de datos:<br>
 * **Usuario**: root
 * **Password**: pass12345
-
-
 
 4. Ir a la carpeta *./frontend* y ejecutar:<br>
 > npm install
 
-**Nota**: este proyecto se ecuta sobre Ionic, sino lo tiene ejecutar:
+**Nota**: este proyecto se ejecuta sobre Ionic, sino lo tiene ejecutar:
 > npm install -g @ionic/cli
 
 5. Una vez instaladas las librerias, ejecutar en la misma carpeta *frontend*:<br>
